@@ -32,7 +32,7 @@ when "centos", "redhat", "amazon", "scientific", "fedora"
     mode 00755
     action :create
     recursive true
-    not_if { File.exists?(node['apache2-simple']['document_root']) }
+    only_if { node['apache2-simple']['create_document_root'] == true }
   end
 
   file "#{node['apache2-simple']['document_root']}/index.html" do
