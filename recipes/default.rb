@@ -18,7 +18,7 @@ when "centos", "redhat", "amazon", "scientific", "fedora"
 
   %w{httpd}.each do |package_name|
     package package_name do
-      action :install
+      action :upgrade
     end
   end
 
@@ -56,7 +56,7 @@ when "ubuntu","debian"
 
   %w{apache2}.each do |package_name|
     package package_name do
-      action :install
+      action :upgrade
     end
   end
 
