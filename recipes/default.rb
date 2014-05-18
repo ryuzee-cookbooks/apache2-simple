@@ -31,6 +31,7 @@ when "centos", "redhat", "amazon", "scientific", "fedora"
     group "root"
     mode 00755
     action :create
+    recursive true
     not_if { File.exists?(node['apache2-simple']['document_root']) }
   end
 
