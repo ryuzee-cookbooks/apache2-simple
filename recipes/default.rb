@@ -26,9 +26,25 @@ when "centos", "redhat", "amazon", "scientific", "fedora"
     action :delete
   end
 
-  file "/var/www/html/index.html" do
+  directory "#{node['apache2-simple']['document_root']}" do
+    owner "root"
+    group "root"
+    mode 00755
+    action :create
+    not_if { File.exists?(node['apache2-simple']['document_root']) }
+  end
+
+  file "#{node['apache2-simple']['document_root']}/index.html" do
     action :create_if_missing
     content "It works!"
+  end
+
+  template "/etc/httpd/conf/httpd.conf" do
+    source "httpd.conf.erb"
+    owner "root"
+    group "root"
+    mode "0644"
+    notifies :reload, 'service[httpd]'
   end
 
   service "httpd" do
