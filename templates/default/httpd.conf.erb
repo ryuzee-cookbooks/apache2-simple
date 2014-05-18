@@ -109,7 +109,7 @@ DocumentRoot "<%= node['apache2-simple']['document_root'] %>"
 
 <Directory "<%= node['apache2-simple']['document_root'] %>">
     Options -Indexes FollowSymLinks
-    AllowOverride None
+    AllowOverride All
     Order allow,deny
     Allow from all
 </Directory>
