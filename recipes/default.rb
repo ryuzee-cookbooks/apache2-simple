@@ -55,6 +55,8 @@ when "centos", "redhat", "amazon", "scientific", "fedora"
 
 when "ubuntu","debian"
 
+  include_recipe "apt"
+
   %w{apache2}.each do |package_name|
     package package_name do
       action :upgrade
