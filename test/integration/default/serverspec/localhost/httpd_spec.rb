@@ -1,16 +1,6 @@
-require 'serverspec'
-include Serverspec::Helper::Exec
-include Serverspec::Helper::DetectOS
+require 'spec_helper'
 
-RSpec.configure do |c|
-  c.before :all do
-    c.os = backend(Serverspec::Commands::Base).check_os
-  end
-  c.path = "/sbin:/usr/sbin"
-end
-
-os = backend(Serverspec::Commands::Base).check_os
-if os[:family] == "Ubuntu" 
+if os[:family] == "ubuntu" 
   p = "apache2"
   index = "/var/www/index.html"
 else
